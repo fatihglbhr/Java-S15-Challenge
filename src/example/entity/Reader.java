@@ -5,32 +5,32 @@ import java.util.Map;
 
 public class Reader extends Person{
 
-    private final Map<Integer, Book> books;
+    private final Map<Long, Book> bookList;
 
-    public Reader(String name) {
-        super(name);
-        books = new HashMap<>();
+    public Reader(String name, String address, String phone) {
+        super(name, address,phone);
+        bookList = SingletonLibrary.getInstance().getBooks();
     }
 
-    public void purchaseBook(int key, Book book){
+    public void purchaseBook(long key, Book book){
 
-        books.put(key, book);
+        bookList.put(key, book);
     }
 
 
     //[TODO] add library interaction
-    public void borrowBook(int key, Book book){
+    public void borrowBook(long key, Book book){
 
-        books.put(key,book);
+
     }
 
-    public void returnBook(int key){
+    public void returnBook(long key){
 
-        books.remove(key);
+
     }
 
-    public Book showBook(int key){
+    public Book showBook(long key){
 
-        return books.get(key);
+        return bookList.get(key);
     }
 }

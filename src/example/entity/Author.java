@@ -4,20 +4,52 @@ import java.util.*;
 
 public class Author extends Person {
 
-    private final Map<Integer, Book> books;
+    private long id;
+    private final Map<Long, Book> bookList;
 
-    public Author(String name) {
-        super(name);
-        books = new HashMap<>();
+    public Author(long id, String name,  String address, String phone) {
+        super(name,address,phone);
+        setId(id);
+        SingletonLibrary.getInstance().getAuthorsList().put(id,this);
+        bookList = SingletonLibrary.getInstance().getBooks();
     }
 
-    public void newBook(int key, Book book){
+    public void setId(Long id) {
 
-        books.put(key, book);
+        this.id = id;
     }
 
-    public Book showBook(int key){
+    public void newBook(Book book){
+        bookList.put(book.getId(), book);
+    }
 
-        return books.get(key);
+    public Book showBook(Long key){
+
+        Book book = bookList.get(key);
+        if(book.getAuthor() == this)
+            return book;
+        return null;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this)
+            return true;
+        if(obj == null || obj.getClass()!=getClass())
+            return false;
+
+        Author author = (Author) obj;
+        return author.id == this.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString(){
+
+        return getName();
     }
 }
