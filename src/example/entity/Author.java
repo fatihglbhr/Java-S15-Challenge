@@ -4,8 +4,6 @@ import java.util.*;
 
 public class Author extends AbstractPerson {
 
-    private final Map<Long, Book> bookList;
-
     public Author(long id, String name,  String address, String phone) {
 
         setId(id);
@@ -14,16 +12,6 @@ public class Author extends AbstractPerson {
         setPhone(phone);
 
         SingletonLibrary.getInstance().getAuthorsList().put(id,this);
-        bookList = SingletonLibrary.getInstance().getBooks();
-    }
-
-    @Override
-    public Book showBook(Long key){
-
-        Book book = bookList.get(key);
-        if(book.getAuthor() == this)
-            return book;
-        return null;
     }
 
     @Override

@@ -1,7 +1,6 @@
 package example.console;
 
 import example.entity.*;
-import example.entity.enums.BookStatusEnum;
 
 import java.util.Scanner;
 
@@ -24,9 +23,7 @@ public class ConsoleHandler {
                     "8-Kitap iade et\n" +
                     "9-Çıkış");
 
-
-
-            while(scan.hasNextInt()){
+            while(!scan.hasNextInt()){
                 System.out.println("Lütfen bir işlem seçin.");
                 scan.next();
             }

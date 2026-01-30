@@ -56,11 +56,11 @@ public class BookLending {
         }
 
 
-        MemberRecord member = library.getReaders().get(memberId);
+        LibraryMembers member = library.getReaders().get(memberId);
         int maxBook = member instanceof Student ? 2 : 3;
         if(!(member.getBookCount() < maxBook)){
             scan.nextLine();
-            System.out.println("You can't borrow anymore books. Please return a borrowed first.");
+            System.out.println("Maksimum kitap sayısına ulaştınız. Devam etmek için ödünç aldığınız bir kitabı geri vermeniz gerekli.");
             scan.nextLine();
             return;
         }

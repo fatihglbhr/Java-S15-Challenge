@@ -2,9 +2,10 @@ package example.entity.enums;
 
 public enum BookTypesEnum {
 
-    JOURNALS("Journals"),
-    STUDY_BOOKS("Study Books"),
-    MAGAZINES("Magazines");
+    JOURNALS("Akademik Dergi"),
+    STUDY_BOOKS("Çalışma Kitabı"),
+    MAGAZINES("Dergi"),
+    NOVELS("Roman");
 
     private final String type;
 

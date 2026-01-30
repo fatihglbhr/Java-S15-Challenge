@@ -1,8 +1,8 @@
 package example.entity.enums;
 
 public enum BookStatusEnum {
-    AVAILABLE("Available"),
-    BORROWED("Borrowed");
+    AVAILABLE("Ödünç alınabilir."),
+    BORROWED("Ödünç alınmış.");
 
     private final String status;
 

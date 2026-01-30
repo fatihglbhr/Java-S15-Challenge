@@ -1,22 +1,20 @@
 package example.entity;
 
 import java.util.Date;
-import java.util.Map;
 import java.util.Objects;
 
-public class MemberRecord extends AbstractPerson {
+public class LibraryMembers extends AbstractPerson {
 
     private long id;
     private Date dateOfMembership;
-    private final Map<Long, Book> bookList;
     private int bookCount;
     private double paymentNeeded;
 
 
-    public MemberRecord(long id,
-                        String name,
-                        String address,
-                        String phone) {
+    public LibraryMembers(long id,
+                          String name,
+                          String address,
+                          String phone) {
 
         setName(name);
         setAddress(address);
@@ -25,7 +23,6 @@ public class MemberRecord extends AbstractPerson {
         setDateOfMembership(new Date());
         bookCount = 0;
 
-        bookList = SingletonLibrary.getInstance().getBooks();
         SingletonLibrary.getInstance().getReaders().put(id,this);
     }
 
@@ -58,11 +55,6 @@ public class MemberRecord extends AbstractPerson {
         return id;
     }
 
-    @Override
-    public Book showBook(Long key) {
-        return bookList.get(key);
-    }
-
     public double getPaymentNeeded() {
         return paymentNeeded;
     }
@@ -75,8 +67,8 @@ public class MemberRecord extends AbstractPerson {
         if(obj == null || obj.getClass() != getClass())
             return false;
 
-        MemberRecord memberRecord = (MemberRecord) obj;
-        return memberRecord.id == id;
+        LibraryMembers libraryMembers = (LibraryMembers) obj;
+        return libraryMembers.id == id;
     }
 
     @Override

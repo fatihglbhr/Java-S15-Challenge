@@ -47,7 +47,5 @@ public abstract class AbstractPerson {
         this.phone = phone;
     }
 
-    public abstract Book showBook(Long key);
-
 
 }

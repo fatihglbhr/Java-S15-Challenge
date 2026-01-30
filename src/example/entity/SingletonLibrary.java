@@ -1,7 +1,5 @@
 package example.entity;
 
-import jdk.jshell.spi.ExecutionEnv;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,8 +7,8 @@ public class SingletonLibrary {
 
     private final String libraryName;
     private final Map<Long, Book> books;
-    private final Map<Long, MemberRecord> readers;
-    private final Map<Long, MemberRecord> lentBooksList;
+    private final Map<Long, LibraryMembers> readers;
+    private final Map<Long, LibraryMembers> lentBooksList;
     private Librarian librarian;
     private final Map<Long, Author> authorsList;
 
@@ -39,12 +37,12 @@ public class SingletonLibrary {
         return books;
     }
 
-    public Map<Long, MemberRecord> getReaders() {
+    public Map<Long, LibraryMembers> getReaders() {
 
         return readers;
     }
 
-    public Map<Long, MemberRecord> getLentBooksList() {
+    public Map<Long, LibraryMembers> getLentBooksList() {
 
         return lentBooksList;
     }
@@ -56,7 +54,7 @@ public class SingletonLibrary {
 
     public Librarian getLibrarian(){
         if(librarian == null)
-            librarian = new Librarian(System.getenv("LIBRARIAN_NAME"), System.getenv("LIBRARIAN_PWD"));
+            librarian = new Librarian(1L, System.getenv("LIBRARIAN_NAME"), System.getenv("LIBRARIAN_PWD"));
         return librarian;
     }
 

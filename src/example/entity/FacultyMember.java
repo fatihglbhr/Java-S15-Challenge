@@ -1,6 +1,8 @@
 package example.entity;
 
-public class FacultyMember extends MemberRecord {
+import java.util.Objects;
+
+public class FacultyMember extends LibraryMembers {
 
     public FacultyMember(long id,
                          String name,
@@ -11,4 +13,17 @@ public class FacultyMember extends MemberRecord {
 
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj == this) return true;
+        if(obj == null || obj.getClass() != getClass()) return false;
+
+        FacultyMember facultyMember = (FacultyMember) obj;
+        return facultyMember.getId() == this.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }
