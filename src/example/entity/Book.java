@@ -2,8 +2,6 @@ package example.entity;
 
 import example.entity.enums.BookStatusEnum;
 import example.entity.enums.BookTypesEnum;
-
-import java.util.Date;
 import java.util.Objects;
 
 public  class Book {
@@ -27,6 +25,7 @@ public  class Book {
         setName(name);
         setPrice(price);
         setType(type);
+        setStatus(BookStatusEnum.AVAILABLE);
         SingletonLibrary.getInstance().getBooks().put(id,this);
     }
 

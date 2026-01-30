@@ -6,7 +6,7 @@ import example.entity.enums.BookTypesEnum;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Librarian {
+public class Librarian  {
 
     private String name;
     private String password;
@@ -14,10 +14,18 @@ public class Librarian {
 
     public Librarian(String name, String password) {
 
-        this.name = name;
-        this.password = password;
+        setName(name);
+        setPassword(password);
 
         library = SingletonLibrary.getInstance();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String searchBook(long id) {
@@ -37,15 +45,6 @@ public class Librarian {
                 return book.getTitle() + " is " + book.getStatus();
 
         return "Book titled " + name + " not found.";
-    }
-
-    public String searchBook(Author author) {
-
-        for (Book book : library.getBooks().values())
-            if (book.getAuthor() == author)
-                return book.getTitle() + " is " + book.getStatus();
-
-        return author.getName() + " not found.";
     }
 
     public List<Book> getBooksByType(BookTypesEnum bookType){
@@ -72,17 +71,16 @@ public class Librarian {
         return books;
     }
 
-    public Boolean verifyMember(long id){
-
-        return library.getReaders().containsKey(id);
-    }
-
     public void issueBook(Book book, MemberRecord member){
 
         book.updateStatus(BookStatusEnum.BORROWED);
         library.getLentBooksList().put(book.getId(),member);
         member.increment();
-        member.setPaymentNeeded(member.getPaymentNeeded() + book.getPrice());
+        if(member instanceof Student){
+            member.setPaymentNeeded(member.getPaymentNeeded() + book.getPrice()/2);
+        } else {
+            member.setPaymentNeeded(member.getPaymentNeeded() + book.getPrice());
+        };
         System.out.println(book + " lent successfully.");
 
     }

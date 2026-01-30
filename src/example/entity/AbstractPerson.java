@@ -1,17 +1,11 @@
 package example.entity;
 
-public class Person {
+public abstract class AbstractPerson {
 
+    private long id;
     private String name;
     private String address;
     private String phone;
-
-    public Person(String name, String address, String phone){
-
-        setName(name);
-        setAddress(address);
-        setPhone(phone);
-    }
 
     public String getName(){
 
@@ -28,9 +22,19 @@ public class Person {
         return phone;
     }
 
+    public long getId() {
+
+        return id;
+    }
+
     public void setName(String name) {
 
         this.name = name;
+    }
+
+    public void setId(long id) {
+
+        this.id = id;
     }
 
     public void setAddress(String address) {
@@ -42,4 +46,8 @@ public class Person {
 
         this.phone = phone;
     }
+
+    public abstract Book showBook(Long key);
+
+
 }

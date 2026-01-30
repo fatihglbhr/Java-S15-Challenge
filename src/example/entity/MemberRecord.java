@@ -1,32 +1,31 @@
 package example.entity;
 
-import example.entity.enums.MemberTypesEnum;
-
 import java.util.Date;
+import java.util.Map;
 import java.util.Objects;
 
-public class MemberRecord extends Reader {
+public class MemberRecord extends AbstractPerson {
 
     private long id;
-    private MemberTypesEnum type;
     private Date dateOfMembership;
-
+    private final Map<Long, Book> bookList;
     private int bookCount;
     private double paymentNeeded;
 
 
     public MemberRecord(long id,
                         String name,
-                        MemberTypesEnum type,
                         String address,
                         String phone) {
 
-        super(name,address,phone);
+        setName(name);
+        setAddress(address);
+        setPhone(phone);
         setId(id);
-        setType(type);
         setDateOfMembership(new Date());
         bookCount = 0;
 
+        bookList = SingletonLibrary.getInstance().getBooks();
         SingletonLibrary.getInstance().getReaders().put(id,this);
     }
 
@@ -50,10 +49,6 @@ public class MemberRecord extends Reader {
         this.id = id;
     }
 
-    public void setType(MemberTypesEnum type) {
-        this.type = type;
-    }
-
     public int getBookCount() {
         return bookCount;
     }
@@ -61,6 +56,11 @@ public class MemberRecord extends Reader {
     public long getId() {
 
         return id;
+    }
+
+    @Override
+    public Book showBook(Long key) {
+        return bookList.get(key);
     }
 
     public double getPaymentNeeded() {
@@ -84,4 +84,6 @@ public class MemberRecord extends Reader {
 
         return Objects.hash(id);
     }
+
+
 }

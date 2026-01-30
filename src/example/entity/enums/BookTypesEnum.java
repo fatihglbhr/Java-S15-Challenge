@@ -3,7 +3,7 @@ package example.entity.enums;
 public enum BookTypesEnum {
 
     JOURNALS("Journals"),
-    STUDY_BOOKS("StudyBooks"),
+    STUDY_BOOKS("Study Books"),
     MAGAZINES("Magazines");
 
     private final String type;
